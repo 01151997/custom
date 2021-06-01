@@ -175,17 +175,22 @@ mat-card{
         }
       }
     }
+    .layOut{
       mat-card-actions{
-        width: 95%;
+        max-width: 72%;
+        float: right;
+        flex: 1 1 48%;
+        display: flex;
         .button {
-          float: right;
+         
           min-width: 70%;
         }
         .button_refresh{
-          float: right;
+      
           min-width: 70%;
         }
       }
+    }
      
 .button_Not_Available{
   min-width: 20%;
@@ -204,10 +209,10 @@ mat-card{
         .card{
           .total{
             .button_change{
-              min-width: 30%;
+              min-width: 34%;
             }
             .button_Not_Available{
-              min-width: 30%;
+              min-width: 34%;
             }
           }
         }
