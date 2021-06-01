@@ -1,0 +1,21 @@
+.heading{
+    text-align: center;
+    font-size: 40px;
+    display: flex;
+    font-weight: 600;
+    justify-content: center
+}
+.image{
+    display: flex;
+    justify-content: center;
+}
+mat-card{
+    height: -webkit-fill-available;
+}
+@media only screen and (max-width:774px){
+    .image{
+        .icon{
+            width: 76%;
+        }
+    }
+}
