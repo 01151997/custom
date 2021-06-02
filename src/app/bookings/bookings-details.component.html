@@ -7,26 +7,51 @@
                     <form [formGroup]='searchForm'>
                         <div class="layOut" fxLayout="row wrap" fxLayoutAlign="space-evenly">
 
-                            <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="18%">
+                            <!-- <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="18%">
                                 <mat-label class="text_placeholder">Departure</mat-label>
                                 <input matInput placeholder="Enter Departure" formControlName='departure'>
+                            </mat-form-field> -->
+
+                            <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="14%">
+                                <mat-label  class="text_placeholder">Departure</mat-label >
+                                <mat-select placeholder="Select Departure" formControlName='departure' >
+                                    <mat-option *ngFor="let transaction of transaction" [value]="transaction">
+                                        {{transaction}}
+                                    </mat-option>
+                                </mat-select>
                             </mat-form-field>
 
-                            <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="18%">
+                            <!-- <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="18%">
                                 <mat-label class="text_placeholder">Arrival</mat-label>
                                 <input matInput placeholder="Enter Arrival" formControlName='arrival'>
+                            </mat-form-field> -->
+
+                            <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="14%">
+                                <mat-label  class="text_placeholder">Arrival</mat-label >
+                                <mat-select placeholder="Select Arrival" formControlName='arrival' >
+                                    <mat-option *ngFor="let arrival of arrival" [value]="arrival">
+                                        {{arrival}}
+                                    </mat-option>
+                                </mat-select>
                             </mat-form-field>
 
-                            <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="18%">
+                            <mat-form-field appearance="outline" fxFlex="48%" fxFlex.gt-sm="14%">
                                 <mat-label class="text_placeholder">Choose a date</mat-label>
                                 <input matInput [matDatepicker]="picker" formControlName='date'>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
-                         <div  fxFlex="48%" fxFlex.gt-sm="18%">
-                            <label class="slider_label"  >Cost of Ticket</label>
+                         <div  fxFlex="48%" fxFlex.gt-sm="25%">
+                            <!-- <label class="slider_label"  >Cost of Ticket   Min {{minValue}}   Max  {{maxValue}}</label> -->
+                            <span class="slider_label">Min Cost {{minValue}}</span>  <span class="slider_label_one">Max Cost  {{maxValue}}</span>
+                            <div style="display: inline-flex; min-width: 100%;">
                                 <mat-slider  thumbLabel formControlName='slider' [displayWith]="formatLabel" tickInterval="1000" step="1000" min="0"
-                                    max="100000" aria-label="units"></mat-slider>  
+                                max="100000" aria-label="units"  (change)="sliderStops()"></mat-slider>  
+                                <mat-slider  thumbLabel formControlName='sliderTwo' [displayWith]="formatLabel" tickInterval="1000" step="1000" min="0"
+                                max="100000" aria-label="units"  (change)="sliderStops()"></mat-slider>  
+                            </div>
+                               
+                                
                          </div>
                                
                                     <mat-card-actions fxFlex="48%" fxFlex.gt-sm="18%">

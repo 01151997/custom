@@ -23,18 +23,27 @@ mat-input-placeholder {
   font-weight: bold;
 }
 .slider_label{
-  // height: 22px;
-  // padding: 13px;
+  color: rgba(0,0,0,.7);
+  font-size: 15px; 
+  font-weight: bold;
+  margin: auto;
+}
+.slider_label_one{
   display: flex;
   color: rgba(0,0,0,.7);
   font-size: 15px; 
   font-weight: bold;
-  justify-content: center;
   margin: auto;
+  float: right;
+  // padding-right: 10px;
 }
 mat-slider{
   display: flex;
+  height: 48px;
+  min-width: 50%;
+    // min-width: 186px;
 }
+
 .button {
   /* background-color: green; */
   background-color:#4285f4;

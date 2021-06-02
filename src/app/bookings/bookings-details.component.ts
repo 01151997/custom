@@ -18,28 +18,34 @@ export class BookingDetailsComponent implements OnInit {
     return value;
   }
   starRating = 4;
+  public minValue = 0;
+  public maxValue = 0;
   public workList = [];
+  public workListData = [];
   public searchForm: FormGroup;
   public valueNotFound: boolean;
+  public transaction=['Mumbai','Delhi','Chennai','Kolkata'];
+  public arrival = [ 'New York','Dubai','Delhi','Tokiyo','Weeze']
   ngOnInit(): void {
     console.log(this.data.customAirWay)
     console.log(this.data.value)
     this.workList = this.data.customAirWay
+    this.workListData = this.data.customAirWay
 
     this.searchForm = this.fb.group({
       departure: ['', Validators.required],
       arrival: ['', Validators.required],
       date: ['', Validators.required],
-      slider: ['', Validators.required]
+      slider: [''],
+      sliderTwo:['']
     })
   }
   public onSearch(): void {
     console.log(this.searchForm.value);
     if (this.searchForm.valid) {
-      this.workList = this.workList.filter(data => {
+      this.workList = this.workListData.filter(data => {
         return data.departure.toString().toLowerCase() === this.searchForm.value.departure.toString().toLowerCase() &&
-          data.arrival.toString().toLowerCase() === this.searchForm.value.arrival.toString().toLowerCase() &&
-          data.Cost.toString().toLowerCase() === this.searchForm.value.slider.toString().toLowerCase();
+          data.arrival.toString().toLowerCase() === this.searchForm.value.arrival.toString().toLowerCase()
       })
       console.log(this.workList)
       if (this.workList.length === 0) {
@@ -58,5 +64,23 @@ export class BookingDetailsComponent implements OnInit {
     })
     this.workList = this.data.customAirWay
     this.valueNotFound = false;
+  }
+  public sliderStops(): void {
+    this.minValue = this.searchForm.value.slider;
+    this.maxValue = this.searchForm.value.sliderTwo
+    ;
+    if(this.searchForm.value.slider !== '' && this.searchForm.value.sliderTwo !== ''){
+      this.workList = this.workListData.filter(data => {
+        return  data.Cost.toString().toLowerCase() >= this.searchForm.value.slider.toString().toLowerCase() && 
+          data.Cost.toString().toLowerCase() <= this.searchForm.value.sliderTwo.toString().toLowerCase();
+      })
+      console.log(this.workList)
+      if (this.workList.length === 0) {
+        this.valueNotFound = true;
+      } else {
+        this.valueNotFound = false;
+      }
+    }
+    
   }
 }
